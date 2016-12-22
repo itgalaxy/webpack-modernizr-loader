@@ -48,7 +48,8 @@
         "remark-lint": "^5.0.0",
         "remark-preset-lint-itgalaxy": "^3.0.0",
         "webpack": "^1.13.2",
-        "temp": "^0.8.3"
+        "tmp": "^0.0.31",
+        "pify": "^2.3.0"
     },
     "scripts": {
         "lint:eslint": "eslint . --ignore-path .gitignore --ignore-pattern '**/fixtures/**'",

@@ -82,14 +82,14 @@ module.exports = {
   module: {
     loaders: [
       {
-       loader: `figlet?config=${encodeURI(JSON.stringify(figletConfig))}`,
-       test: /figlet$/
+       loader: `modernizr?config=${encodeURI(JSON.stringify(modernizrConfig))}`,
+       test: /modernizr$/
       }
     ]
   },
   resolve: {
     alias: {
-      figlet$: path.resolve(__dirname, "path/to/empty-file") // You can add comment "Please do not delete this file" in this file
+      modernizr$: path.resolve(__dirname, "path/to/empty-file") // You can add comment "Please do not delete this file" in this file
     }
   }
 }
@@ -121,7 +121,7 @@ modernizrLoader(() => {});
 
 ## Contribution
 
-Don't hesitate to create a pull request. Every contribution is appreciated.
+Feel free to push your code if you agree with publishing under the MIT license.
 
 ## [Changelog](CHANGELOG.md)
 
