@@ -53,16 +53,13 @@ module.exports = function (resolveConfig) {
         if (parsedQuery.config) {
             externalConfig = JSON.parse(parsedQuery.config);
         }
-    } else {
-        externalConfig = resolveConfig && isJSON(resolveConfig)
+    } else if (resolveConfig) {
+        externalConfig = isJSON(resolveConfig)
             ? JSON.parse(resolveConfig)
             : this.exec(resolveConfig, this.resource);
     }
 
-    const config = Object.assign(
-        {},
-        externalConfig
-    );
+    const config = Object.assign({}, externalConfig);
 
     modernizr.build(config, (output) => callback(null, wrapOutput(output)));
 };
