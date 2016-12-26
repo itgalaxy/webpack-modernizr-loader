@@ -57,7 +57,7 @@ Full list of supported **"options"** and their **"description"** can be found in
 
 Put the following code to your webpack config file:
 
-```javascript
+```js
 module.exports = {
   module: {
     loaders: [
@@ -77,7 +77,7 @@ module.exports = {
 
 Alternative configurations supported dynamic configuration:
 
-```javascript
+```js
 module.exports = {
   module: {
     loaders: [
@@ -103,13 +103,13 @@ Using `config` through `query string` is have large priority than through `resol
 
 Now you are able to import your custom modernizr build as a module throughout your application like so:
 
-```javscript
+```js
 import 'modernizr';
 ```
 
 You can used [bundle](https://github.com/webpack/bundle-loader) plugin for async loading:
 
-```javscript
+```js
 import modernizrLoader from 'bundle?lazy!modernizr';
 
 modernizrLoader(() => {});
