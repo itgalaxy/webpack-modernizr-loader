@@ -6,7 +6,7 @@ import test from 'ava';
 import tmp from 'tmp';
 import webpack from 'webpack';
 
-const loader = `${path.resolve(__dirname, '../index.js')}`;
+const loader = path.resolve(__dirname, '../index.js');
 const fixturesDir = path.resolve(__dirname, 'fixtures');
 
 tmp.setGracefulCleanup();
