@@ -19,8 +19,7 @@ test(
         unsafeCleanup: true
     })
         .then((result) => {
-            const tmpPath = result[0];
-            const cleanupCallback = result[1];
+            const [tmpPath, cleanupCallback] = result;
 
             const webpackConfig = {
                 context: fixturesDir,
@@ -63,8 +62,7 @@ test(
         unsafeCleanup: true
     })
         .then((result) => {
-            const tmpPath = result[0];
-            const cleanupCallback = result[1];
+            const [tmpPath, cleanupCallback] = result;
 
             const webpackConfig = {
                 context: fixturesDir,
@@ -113,8 +111,7 @@ test(
         unsafeCleanup: true
     })
         .then((result) => {
-            const tmpPath = result[0];
-            const cleanupCallback = result[1];
+            const [tmpPath, cleanupCallback] = result;
 
             const webpackConfig = {
                 context: fixturesDir,
@@ -163,8 +160,7 @@ test(
         unsafeCleanup: true
     })
         .then((result) => {
-            const tmpPath = result[0];
-            const cleanupCallback = result[1];
+            const [tmpPath, cleanupCallback] = result;
 
             const webpackConfig = {
                 context: fixturesDir,
@@ -207,8 +203,7 @@ test(
         unsafeCleanup: true
     })
         .then((result) => {
-            const tmpPath = result[0];
-            const cleanupCallback = result[1];
+            const [tmpPath, cleanupCallback] = result;
 
             const webpackConfig = {
                 context: fixturesDir,
@@ -259,8 +254,7 @@ test(
         unsafeCleanup: true
     })
         .then((result) => {
-            const tmpPath = result[0];
-            const cleanupCallback = result[1];
+            const [tmpPath, cleanupCallback] = result;
 
             const webpackConfig = {
                 context: fixturesDir,
