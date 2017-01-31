@@ -1,6 +1,6 @@
 {
     "name": "webpack-modernizr-loader",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Get your modernizr build bundled with webpack, use modernizr with webpack easily",
     "repository": {
         "type": "git",
