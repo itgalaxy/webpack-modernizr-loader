@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-# HEAD
+# 2.0.0 - 2017-02-01
 
 - Changed: no longer required to transfer options for `modernizr` using `config` option.
 - Changed: to load configuration from file, need specify `useConfigFile` option.
