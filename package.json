@@ -22,7 +22,8 @@
         "index.js"
     ],
     "dependencies": {
-        "modernizr": "^3.1.0"
+        "modernizr": "^3.1.0",
+        "loader-utils": "^0.2.16"
     },
     "devDependencies": {
         "ava": "^0.17.0",

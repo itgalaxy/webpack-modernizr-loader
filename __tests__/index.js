@@ -12,6 +12,47 @@ const fixturesDir = path.resolve(__dirname, 'fixtures');
 tmp.setGracefulCleanup();
 
 test(
+    'should execute successfully without any options`',
+    (t) => pify(tmp.dir, {
+        multiArgs: true
+    })({
+        unsafeCleanup: true
+    })
+        .then((result) => {
+            const [tmpPath, cleanupCallback] = result;
+            const webpackConfig = {
+                context: fixturesDir,
+                entry: './index.js',
+                module: {
+                    rules: [
+                        {
+                            loader,
+                            options: {},
+                            test: /\.modernizrrc\.json$/
+                        }
+                    ]
+                },
+                output: {
+                    filename: 'bundle.js',
+                    path: `${tmpPath}`
+                }
+            };
+
+            return pify(webpack)(webpackConfig)
+                .then((stats) => {
+                    t.true(stats.compilation.errors.length === 0, 'no compilation error');
+
+                    return pify(fs).readFile(path.join(tmpPath, 'bundle.js'), 'utf8')
+                        .then((data) => {
+                            t.true(/Modernizr/.test(data));
+
+                            return cleanupCallback();
+                        });
+                });
+        })
+);
+
+test(
     'should execute successfully with JSON config and use `require("./.modernizrrc.json")`',
     (t) => pify(tmp.dir, {
         multiArgs: true
@@ -20,14 +61,13 @@ test(
     })
         .then((result) => {
             const [tmpPath, cleanupCallback] = result;
-
             const webpackConfig = {
                 context: fixturesDir,
                 entry: './index.js',
                 module: {
-                    loaders: [
+                    rules: [
                         {
-                            loader,
+                            loader: `${loader}?useConfigFile`,
                             test: /\.modernizrrc\.json$/
                         }
                     ]
@@ -63,14 +103,13 @@ test(
     })
         .then((result) => {
             const [tmpPath, cleanupCallback] = result;
-
             const webpackConfig = {
                 context: fixturesDir,
                 entry: './index1.js',
                 module: {
-                    loaders: [
+                    rules: [
                         {
-                            loader,
+                            loader: `${loader}?useConfigFile`,
                             test: /\.modernizrrc\.json$/
                         }
                     ]
@@ -112,14 +151,13 @@ test(
     })
         .then((result) => {
             const [tmpPath, cleanupCallback] = result;
-
             const webpackConfig = {
                 context: fixturesDir,
                 entry: './index1.js',
                 module: {
-                    loaders: [
+                    rules: [
                         {
-                            loader,
+                            loader: `${loader}?useConfigFile`,
                             test: /\.modernizrrc\.js$/
                         }
                     ]
@@ -161,14 +199,13 @@ test(
     })
         .then((result) => {
             const [tmpPath, cleanupCallback] = result;
-
             const webpackConfig = {
                 context: fixturesDir,
                 entry: './index2.js',
                 module: {
-                    loaders: [
+                    rules: [
                         {
-                            loader,
+                            loader: `${loader}?useConfigFile`,
                             test: /\.modernizrrc\.js$/
                         }
                     ]
@@ -196,7 +233,7 @@ test(
 );
 
 test(
-    'should execute successfully using "query string" and use `require("modernizr")`',
+    'should supported `config` from `options`',
     (t) => pify(tmp.dir, {
         multiArgs: true
     })({
@@ -204,16 +241,14 @@ test(
     })
         .then((result) => {
             const [tmpPath, cleanupCallback] = result;
-
             const webpackConfig = {
                 context: fixturesDir,
                 entry: './index1.js',
                 module: {
-                    loaders: [
+                    rules: [
                         {
-                            loader: `${loader}?config=${encodeURI(JSON.stringify(
-                                modernizrConfig
-                            ))}`,
+                            loader,
+                            options: modernizrConfig,
                             test: /modernizr\.js$/
                         }
                     ]
@@ -247,7 +282,7 @@ test(
 );
 
 test(
-    'should supported "config" using "query string"',
+    'should supported `config` from "query string"',
     (t) => pify(tmp.dir, {
         multiArgs: true
     })({
@@ -255,16 +290,13 @@ test(
     })
         .then((result) => {
             const [tmpPath, cleanupCallback] = result;
-
             const webpackConfig = {
                 context: fixturesDir,
                 entry: './index.js',
                 module: {
-                    loaders: [
+                    rules: [
                         {
-                            loader: `${loader}?config=${encodeURI(JSON.stringify(
-                                modernizrConfig
-                            ))}`,
+                            loader: `${loader}?${JSON.stringify(modernizrConfig)}`,
                             test: /\.modernizrrc\.json$/
                         }
                     ]

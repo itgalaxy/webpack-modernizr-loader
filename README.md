@@ -38,7 +38,7 @@ Or
 'use strict';
 
 module.exports = {
-    "options": [
+    options: [
         "setClasses"
     ],
     "feature-detects": [
@@ -57,59 +57,102 @@ Full list of supported **"options"** and their **"description"** can be found in
 
 Put the following code to your webpack config file:
 
-```js
+```javascript
 module.exports = {
-  module: {
-    loaders: [
-      {
-        loader: "modernizr",
-        test: /\.modernizrrc$/, // or "/\.modernizrrc\.json$/", or "/\.modernizrrc\.js$/"
-      }
-    ]
-  },
-  resolve: {
-    alias: {
-      modernizr$: path.resolve(__dirname, "path/to/.modernizr") // or "path/to/.modernizr.json", or "path/to/.modernizr.js"
+    module: {
+        loaders: [
+            {
+                loader: 'webpack-modernizr?useConfigFile',
+                test: /\.modernizrrc$/, // or "/\.modernizrrc\.json$/", or "/\.modernizrrc\.js$/"
+            }
+        ]
+    },
+    resolve: {
+        alias: {
+            modernizr$: path.resolve(__dirname, "path/to/.modernizrrc") // or "path/to/.modernizrrc.json", or "path/to/.modernizrrc.js"
+        }
     }
-  }
 }
 ```
 
 Alternative configurations supported dynamic configuration:
 
-```js
-module.exports = {
-  module: {
-    loaders: [
-      {
-       loader: `modernizr?config=${encodeURI(JSON.stringify(modernizrConfig))}`,
-       test: /modernizr$/
-      }
+```javascript
+const modernizrOptions = {
+    options: [
+        "setClasses"
+    ],
+    'feature-detects': [
+        'test/css/flexbox',
+        'test/es6/promises',
+        'test/serviceworker'
     ]
-  },
-  resolve: {
-    alias: {
-      modernizr$: path.resolve(__dirname, "path/to/empty-file") // You can add comment "Please do not delete this file" in this file
+};
+
+module.exports = {
+    module: {
+        loaders: [
+            {
+                loader: `webpack-modernizr?${JSON.stringify(modernizrOptions)}`,
+                test: /modernizr$/
+            }
+        ]
+    },
+    resolve: {
+        alias: {
+            modernizr$: path.resolve(__dirname, "path/to/empty-file") // You can add comment "Please do not delete this file" in this file
+        }
     }
-  }
 }
 ```
 
-Note: `webpack` normalize `query` to `loader`.
+In `webpack 2` your can use this config:
 
-Using `config` through `query string` is have large priority than through `resolve.alias`.
+```javascript
+const modernizrOptions = {
+    options: [
+        "setClasses"
+    ],
+    'feature-detects': [
+        'test/css/flexbox',
+        'test/es6/promises',
+        'test/serviceworker'
+    ]
+};
+
+module.exports = {
+    module: {
+        rules: [
+            {
+                loader: `webpack-modernizr-loader`,
+                options: modernizrOptions,
+                test: /modernizr$/
+            }
+        ]
+    },
+    resolve: {
+        alias: {
+            modernizr$: path.resolve(__dirname, "path/to/empty-file") // You can add comment "Please do not delete this file" in this file
+        }
+    }
+}
+```
 
 ### Usage
 
 Now you are able to import your custom modernizr build as a module throughout your application like so:
 
-```js
+```javascript
+const modernizr = require('modernizr');
+```
+
+```javascript
 import 'modernizr';
 ```
 
 You can used [bundle](https://github.com/webpack/bundle-loader) plugin for async loading:
 
-```js
+```javascript
 import modernizrLoader from 'bundle?lazy!modernizr';
 
 modernizrLoader(() => {});

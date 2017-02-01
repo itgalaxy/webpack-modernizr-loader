@@ -3,7 +3,7 @@
 'use strict';
 
 const modernizr = require('modernizr');
-const querystring = require('querystring');
+const loaderUtils = require('loader-utils');
 
 function wrapOutput(output) {
     // Exposing Modernizr as a module.
@@ -40,26 +40,23 @@ module.exports = function (resolveConfig) {
     }
 
     const callback = this.async();
+    const query = loaderUtils.parseQuery(this.query);
 
-    let externalConfig = null;
+    let userConfig = null;
 
-    if (this.query.length > 0) {
-        let parsedQuery = {};
-
-        if (this.query.length > 0) {
-            parsedQuery = querystring.parse(this.query.slice(1, this.query.length));
+    if (Object.keys(query).length > 0) {
+        if (query.useConfigFile) {
+            userConfig = resolveConfig && isJSON(resolveConfig)
+                ? JSON.parse(resolveConfig)
+                : this.exec(resolveConfig, this.resource);
+        } else {
+            userConfig = query;
         }
-
-        if (parsedQuery.config) {
-            externalConfig = JSON.parse(parsedQuery.config);
-        }
-    } else if (resolveConfig) {
-        externalConfig = isJSON(resolveConfig)
-            ? JSON.parse(resolveConfig)
-            : this.exec(resolveConfig, this.resource);
+    } else {
+        userConfig = {};
     }
 
-    const config = Object.assign({}, externalConfig);
+    const config = Object.assign({}, userConfig);
 
     modernizr.build(config, (output) => callback(null, wrapOutput(output)));
 };
