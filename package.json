@@ -40,7 +40,7 @@
         "eslint-plugin-node": "^3.0.5",
         "eslint-plugin-promise": "^3.0.0",
         "eslint-plugin-react": "^6.2.0",
-        "eslint-plugin-unicorn": "^1.0.0",
+        "eslint-plugin-unicorn": "^2.0.0",
         "npmpub": "^3.1.0",
         "npm-run-all": "^4.0.0",
         "nyc": "^10.0.0",
