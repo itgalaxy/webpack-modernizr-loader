@@ -46,7 +46,7 @@
         "nyc": "^10.0.0",
         "package-schema": "^1.0.0",
         "remark-cli": "^2.0.0",
-        "remark-lint": "^5.0.0",
+        "remark-lint": "^6.0.0",
         "remark-preset-lint-itgalaxy": "^4.0.0",
         "webpack": "^2.2.1",
         "tmp": "^0.0.31",
