@@ -27,7 +27,6 @@ test(
                     rules: [
                         {
                             loader,
-                            options: {},
                             test: /\.modernizrrc\.json$/
                         }
                     ]
