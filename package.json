@@ -45,9 +45,8 @@
         "npm-run-all": "^4.0.0",
         "nyc": "^10.0.0",
         "package-schema": "^1.0.0",
-        "remark-cli": "^2.0.0",
-        "remark-lint": "^5.0.0",
-        "remark-preset-lint-itgalaxy": "^4.0.0",
+        "remark-cli": "^3.0.0",
+        "remark-preset-lint-itgalaxy": "^5.0.0",
         "webpack": "^2.2.1",
         "tmp": "^0.0.31",
         "pify": "^2.3.0"
@@ -78,11 +77,6 @@
         "concurrency": 5,
         "babel": "inherit"
     },
-    "remarkConfig": {
-        "presets": [
-            "remark-preset-lint-itgalaxy"
-        ]
-    },
     "eslintConfig": {
         "extends": [
             "plugin:itgalaxy/ava",
@@ -90,5 +84,10 @@
             "plugin:itgalaxy/node"
         ],
         "root": true
+    },
+    "remarkConfig": {
+        "plugins": [
+            "remark-preset-lint-itgalaxy"
+        ]
     }
 }
