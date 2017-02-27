@@ -23,7 +23,7 @@
     ],
     "dependencies": {
         "modernizr": "^3.1.0",
-        "loader-utils": "^0.2.16"
+        "loader-utils": "^1.0.0"
     },
     "devDependencies": {
         "ava": "^0.18.1",
@@ -52,7 +52,7 @@
         "pify": "^2.3.0"
     },
     "peerDependencies": {
-        "webpack": "^^2.0.0"
+        "webpack": "^2.0.0"
     },
     "scripts": {
         "lint:eslint": "eslint . --ignore-path .gitignore --ignore-pattern '**/fixtures/**'",

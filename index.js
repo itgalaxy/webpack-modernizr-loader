@@ -40,17 +40,17 @@ module.exports = function (resolveConfig) {
     }
 
     const callback = this.async();
-    const query = loaderUtils.parseQuery(this.query);
+    const options = loaderUtils.getOptions(this);
 
     let userConfig = null;
 
-    if (Object.keys(query).length > 0) {
-        if (query.useConfigFile) {
+    if (options) {
+        if (options.useConfigFile) {
             userConfig = resolveConfig && isJSON(resolveConfig)
                 ? JSON.parse(resolveConfig)
                 : this.exec(resolveConfig, this.resource);
         } else {
-            userConfig = query;
+            userConfig = options;
         }
     } else {
         userConfig = {};
