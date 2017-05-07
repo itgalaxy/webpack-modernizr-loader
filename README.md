@@ -1,5 +1,7 @@
 # webpack-modernizr-loader
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/itgalaxy/webpack-modernizr-loader.svg)](https://greenkeeper.io/)
+
 [![NPM version](https://img.shields.io/npm/v/webpack-modernizr-loader.svg)](https://www.npmjs.org/package/webpack-modernizr-loader) 
 [![Travis Build Status](https://img.shields.io/travis/itgalaxy/webpack-modernizr-loader/master.svg?label=build)](https://travis-ci.org/itgalaxy/webpack-modernizr-loader) 
 [![dependencies Status](https://david-dm.org/itgalaxy/webpack-modernizr-loader/status.svg)](https://david-dm.org/itgalaxy/webpack-modernizr-loader) 
