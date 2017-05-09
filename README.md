@@ -4,6 +4,7 @@
 [![Travis Build Status](https://img.shields.io/travis/itgalaxy/webpack-modernizr-loader/master.svg?label=build)](https://travis-ci.org/itgalaxy/webpack-modernizr-loader) 
 [![dependencies Status](https://david-dm.org/itgalaxy/webpack-modernizr-loader/status.svg)](https://david-dm.org/itgalaxy/webpack-modernizr-loader) 
 [![devDependencies Status](https://david-dm.org/itgalaxy/webpack-modernizr-loader/dev-status.svg)](https://david-dm.org/itgalaxy/webpack-modernizr-loader?type=dev)
+[![Greenkeeper badge](https://badges.greenkeeper.io/itgalaxy/webpack-modernizr-loader.svg)](https://greenkeeper.io/)
 
 Get your modernizr build bundled with webpack.
 
