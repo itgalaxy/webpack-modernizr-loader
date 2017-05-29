@@ -49,7 +49,7 @@
         "remark-preset-lint-itgalaxy": "^6.0.0",
         "webpack": "^2.2.1",
         "tmp": "^0.0.31",
-        "pify": "^2.3.0"
+        "pify": "^3.0.0"
     },
     "peerDependencies": {
         "webpack": "^2.0.0"
