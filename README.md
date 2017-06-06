@@ -161,7 +161,7 @@ modernizrLoader(() => {});
 
 ## Related
 
-- [Modernizr](https://github.com/Modernizr/Modernizr) - API for this module
+-   [Modernizr](https://github.com/Modernizr/Modernizr) - API for this module
 
 ## Contribution
 
