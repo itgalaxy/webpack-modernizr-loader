@@ -35,10 +35,6 @@ function isJSON(str) {
 }
 
 module.exports = function (resolveConfig) {
-    if (typeof this.cacheable === 'function') {
-        this.cacheable();
-    }
-
     const callback = this.async();
     const options = loaderUtils.getOptions(this);
 
