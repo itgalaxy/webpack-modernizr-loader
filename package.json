@@ -57,7 +57,7 @@
         "prettier": "^1.4.2"
     },
     "peerDependencies": {
-        "webpack": "^2.0.0"
+        "webpack": "^3.0.0"
     },
     "scripts": {
         "precommit": "lint-staged",
