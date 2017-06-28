@@ -1,1 +1,1 @@
-require('./.modernizrrc.js');
+require("./.modernizrrc.js");

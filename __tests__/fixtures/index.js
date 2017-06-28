@@ -1,1 +1,1 @@
-require('./.modernizrrc.json');
+require("./.modernizrrc.json");

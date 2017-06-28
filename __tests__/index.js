@@ -1,17 +1,17 @@
-import fs from 'fs';
-import modernizrConfig from './fixtures/.modernizrrc.json';
-import path from 'path';
-import pify from 'pify';
-import test from 'ava';
-import tmp from 'tmp';
-import webpack from 'webpack';
+import fs from "fs";
+import modernizrConfig from "./fixtures/.modernizrrc.json";
+import path from "path";
+import pify from "pify";
+import test from "ava";
+import tmp from "tmp";
+import webpack from "webpack";
 
-const loader = path.resolve(__dirname, '../index.js');
-const fixturesDir = path.resolve(__dirname, 'fixtures');
+const loader = path.resolve(__dirname, "../index.js");
+const fixturesDir = path.resolve(__dirname, "fixtures");
 
 tmp.setGracefulCleanup();
 
-test('should execute successfully without any options`', t =>
+test("should execute successfully without any options`", t =>
     pify(tmp.dir, {
         multiArgs: true
     })({
@@ -20,7 +20,7 @@ test('should execute successfully without any options`', t =>
         const [tmpPath, cleanupCallback] = result;
         const webpackConfig = {
             context: fixturesDir,
-            entry: './index.js',
+            entry: "./index.js",
             module: {
                 rules: [
                     {
@@ -30,7 +30,7 @@ test('should execute successfully without any options`', t =>
                 ]
             },
             output: {
-                filename: 'bundle.js',
+                filename: "bundle.js",
                 path: `${tmpPath}`
             }
         };
@@ -38,11 +38,11 @@ test('should execute successfully without any options`', t =>
         return pify(webpack)(webpackConfig).then(stats => {
             t.true(
                 stats.compilation.errors.length === 0,
-                'no compilation error'
+                "no compilation error"
             );
 
             return pify(fs)
-                .readFile(path.join(tmpPath, 'bundle.js'), 'utf8')
+                .readFile(path.join(tmpPath, "bundle.js"), "utf8")
                 .then(data => {
                     t.true(/Modernizr/.test(data));
 
@@ -60,7 +60,7 @@ test('should execute successfully with JSON config and use `require("./.moderniz
         const [tmpPath, cleanupCallback] = result;
         const webpackConfig = {
             context: fixturesDir,
-            entry: './index.js',
+            entry: "./index.js",
             module: {
                 rules: [
                     {
@@ -70,7 +70,7 @@ test('should execute successfully with JSON config and use `require("./.moderniz
                 ]
             },
             output: {
-                filename: 'bundle.js',
+                filename: "bundle.js",
                 path: `${tmpPath}`
             }
         };
@@ -78,11 +78,11 @@ test('should execute successfully with JSON config and use `require("./.moderniz
         return pify(webpack)(webpackConfig).then(stats => {
             t.true(
                 stats.compilation.errors.length === 0,
-                'no compilation error'
+                "no compilation error"
             );
 
             return pify(fs)
-                .readFile(path.join(tmpPath, 'bundle.js'), 'utf8')
+                .readFile(path.join(tmpPath, "bundle.js"), "utf8")
                 .then(data => {
                     t.true(/addTest\('flexbox/.test(data));
                     t.true(/addTest\('promise/.test(data));
@@ -102,7 +102,7 @@ test('should execute successfully with JSON config and use `require("modernizr")
         const [tmpPath, cleanupCallback] = result;
         const webpackConfig = {
             context: fixturesDir,
-            entry: './index1.js',
+            entry: "./index1.js",
             module: {
                 rules: [
                     {
@@ -112,7 +112,7 @@ test('should execute successfully with JSON config and use `require("modernizr")
                 ]
             },
             output: {
-                filename: 'bundle.js',
+                filename: "bundle.js",
                 path: `${tmpPath}`
             },
             resolve: {
@@ -120,7 +120,7 @@ test('should execute successfully with JSON config and use `require("modernizr")
                     // eslint-disable-next-line id-match
                     modernizr$: `${path.resolve(
                         __dirname,
-                        'fixtures/.modernizrrc.json'
+                        "fixtures/.modernizrrc.json"
                     )}`
                 }
             }
@@ -129,11 +129,11 @@ test('should execute successfully with JSON config and use `require("modernizr")
         return pify(webpack)(webpackConfig).then(stats => {
             t.true(
                 stats.compilation.errors.length === 0,
-                'no compilation error'
+                "no compilation error"
             );
 
             return pify(fs)
-                .readFile(path.join(tmpPath, 'bundle.js'), 'utf8')
+                .readFile(path.join(tmpPath, "bundle.js"), "utf8")
                 .then(data => {
                     t.true(/addTest\('flexbox/.test(data));
                     t.true(/addTest\('promise/.test(data));
@@ -153,7 +153,7 @@ test('should execute successfully with JS config and use `require("modernizr")`'
         const [tmpPath, cleanupCallback] = result;
         const webpackConfig = {
             context: fixturesDir,
-            entry: './index1.js',
+            entry: "./index1.js",
             module: {
                 rules: [
                     {
@@ -163,7 +163,7 @@ test('should execute successfully with JS config and use `require("modernizr")`'
                 ]
             },
             output: {
-                filename: 'bundle.js',
+                filename: "bundle.js",
                 path: `${tmpPath}`
             },
             resolve: {
@@ -171,7 +171,7 @@ test('should execute successfully with JS config and use `require("modernizr")`'
                     // eslint-disable-next-line id-match
                     modernizr$: `${path.resolve(
                         __dirname,
-                        'fixtures/.modernizrrc.js'
+                        "fixtures/.modernizrrc.js"
                     )}`
                 }
             }
@@ -180,11 +180,11 @@ test('should execute successfully with JS config and use `require("modernizr")`'
         return pify(webpack)(webpackConfig).then(stats => {
             t.true(
                 stats.compilation.errors.length === 0,
-                'no compilation error'
+                "no compilation error"
             );
 
             return pify(fs)
-                .readFile(path.join(tmpPath, 'bundle.js'), 'utf8')
+                .readFile(path.join(tmpPath, "bundle.js"), "utf8")
                 .then(data => {
                     t.true(/addTest\('flexbox/.test(data));
                     t.true(/addTest\('promise/.test(data));
@@ -204,7 +204,7 @@ test('should execute successfully with JS config and use `require("./.modernizrr
         const [tmpPath, cleanupCallback] = result;
         const webpackConfig = {
             context: fixturesDir,
-            entry: './index2.js',
+            entry: "./index2.js",
             module: {
                 rules: [
                     {
@@ -214,7 +214,7 @@ test('should execute successfully with JS config and use `require("./.modernizrr
                 ]
             },
             output: {
-                filename: 'bundle.js',
+                filename: "bundle.js",
                 path: `${tmpPath}`
             }
         };
@@ -222,11 +222,11 @@ test('should execute successfully with JS config and use `require("./.modernizrr
         return pify(webpack)(webpackConfig).then(stats => {
             t.true(
                 stats.compilation.errors.length === 0,
-                'no compilation error'
+                "no compilation error"
             );
 
             return pify(fs)
-                .readFile(path.join(tmpPath, 'bundle.js'), 'utf8')
+                .readFile(path.join(tmpPath, "bundle.js"), "utf8")
                 .then(data => {
                     t.true(/addTest\('flexbox/.test(data));
                     t.true(/addTest\('promise/.test(data));
@@ -237,7 +237,7 @@ test('should execute successfully with JS config and use `require("./.modernizrr
         });
     }));
 
-test('should supported `config` from `options`', t =>
+test("should supported `config` from `options`", t =>
     pify(tmp.dir, {
         multiArgs: true
     })({
@@ -246,7 +246,7 @@ test('should supported `config` from `options`', t =>
         const [tmpPath, cleanupCallback] = result;
         const webpackConfig = {
             context: fixturesDir,
-            entry: './index1.js',
+            entry: "./index1.js",
             module: {
                 rules: [
                     {
@@ -257,7 +257,7 @@ test('should supported `config` from `options`', t =>
                 ]
             },
             output: {
-                filename: 'bundle.js',
+                filename: "bundle.js",
                 path: `${tmpPath}`
             },
             resolve: {
@@ -265,7 +265,7 @@ test('should supported `config` from `options`', t =>
                     // eslint-disable-next-line id-match
                     modernizr$: `${path.resolve(
                         __dirname,
-                        'fixtures/modernizr.js'
+                        "fixtures/modernizr.js"
                     )}`
                 }
             }
@@ -274,11 +274,11 @@ test('should supported `config` from `options`', t =>
         return pify(webpack)(webpackConfig).then(stats => {
             t.true(
                 stats.compilation.errors.length === 0,
-                'no compilation error'
+                "no compilation error"
             );
 
             return pify(fs)
-                .readFile(path.join(tmpPath, 'bundle.js'), 'utf8')
+                .readFile(path.join(tmpPath, "bundle.js"), "utf8")
                 .then(data => {
                     t.true(/addTest\('flexbox/.test(data));
                     t.true(/addTest\('promise/.test(data));
@@ -298,7 +298,7 @@ test('should supported `config` from "query string"', t =>
         const [tmpPath, cleanupCallback] = result;
         const webpackConfig = {
             context: fixturesDir,
-            entry: './index.js',
+            entry: "./index.js",
             module: {
                 rules: [
                     {
@@ -308,7 +308,7 @@ test('should supported `config` from "query string"', t =>
                 ]
             },
             output: {
-                filename: 'bundle.js',
+                filename: "bundle.js",
                 path: `${tmpPath}`
             }
         };
@@ -316,11 +316,11 @@ test('should supported `config` from "query string"', t =>
         return pify(webpack)(webpackConfig).then(stats => {
             t.true(
                 stats.compilation.errors.length === 0,
-                'no compilation error'
+                "no compilation error"
             );
 
             return pify(fs)
-                .readFile(path.join(tmpPath, 'bundle.js'), 'utf8')
+                .readFile(path.join(tmpPath, "bundle.js"), "utf8")
                 .then(data => {
                     t.true(/addTest\('flexbox/.test(data));
                     t.true(/addTest\('promise/.test(data));

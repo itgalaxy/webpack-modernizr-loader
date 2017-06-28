@@ -1,28 +1,28 @@
 /* eslint-disable strict, import/no-commonjs */
 
-'use strict';
+"use strict";
 
-const modernizr = require('modernizr');
-const loaderUtils = require('loader-utils');
+const modernizr = require("modernizr");
+const loaderUtils = require("loader-utils");
 
 function wrapOutput(output) {
     // Exposing Modernizr as a module.
     return (
-        '(function (root, factory) {' +
+        "(function (root, factory) {" +
         "'use strict';" +
         "if (typeof define === 'function' && define.amd) {" +
-        'define([], factory);' +
+        "define([], factory);" +
         "} else if (typeof exports === 'object'" +
         "&& typeof module !== 'undefined'" +
         "&& typeof require === 'function'" +
-        ') {' +
-        'module.exports = factory();' +
-        '} else {' +
-        'factory();' +
-        '}' +
-        '})(this, function () {' +
+        ") {" +
+        "module.exports = factory();" +
+        "} else {" +
+        "factory();" +
+        "}" +
+        "})(this, function () {" +
         `'use strict';${output};` +
-        '});'
+        "});"
     );
 }
 
@@ -45,9 +45,10 @@ module.exports = function(resolveConfig) {
 
     if (options) {
         if (options.useConfigFile) {
-            userConfig = resolveConfig && isJSON(resolveConfig)
-                ? JSON.parse(resolveConfig)
-                : this.exec(resolveConfig, this.resource);
+            userConfig =
+                resolveConfig && isJSON(resolveConfig)
+                    ? JSON.parse(resolveConfig)
+                    : this.exec(resolveConfig, this.resource);
         } else {
             userConfig = options;
         }
