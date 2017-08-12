@@ -54,7 +54,7 @@
         "prettier": "^1.5.2",
         "remark-cli": "^4.0.0",
         "remark-preset-lint-itgalaxy": "^7.0.1",
-        "tmp": "^0.0.31",
+        "tmp": "^0.0.33",
         "webpack": "^3.0.0"
     },
     "peerDependencies": {
