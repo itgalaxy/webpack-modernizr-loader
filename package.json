@@ -1,98 +1,118 @@
 {
-    "name": "webpack-modernizr-loader",
-    "version": "3.0.1",
-    "description": "Get your modernizr build bundled with webpack, use modernizr with webpack easily",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/itgalaxy/webpack-modernizr-loader.git"
+  "name": "webpack-modernizr-loader",
+  "version": "3.0.1",
+  "description": "Get your modernizr build bundled with webpack, use modernizr with webpack easily",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/itgalaxy/webpack-modernizr-loader.git"
+  },
+  "homepage": "https://github.com/itgalaxy/webpack-modernizr-loader",
+  "keywords": [
+    "modernizr",
+    "webpack",
+    "loader"
+  ],
+  "author": "Itgalaxy <development@itgalaxy.company>",
+  "bugs": {
+    "url": "https://github.com/itgalaxy/webpack-modernizr-loader/issues"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "engines": {
+    "node": ">= 4.3 < 5.0.0 || >= 5.10"
+  },
+  "dependencies": {
+    "modernizr": "^3.1.0",
+    "loader-utils": "^1.0.0"
+  },
+  "devDependencies": {
+    "ava": "^0.22.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-register": "^6.14.0",
+    "eslint": "^4.1.1",
+    "eslint-plugin-ava": "^4.2.1",
+    "eslint-plugin-import": "^2.6.0",
+    "eslint-plugin-itgalaxy": "^52.0.0",
+    "eslint-plugin-jest": "^20.0.3",
+    "eslint-plugin-jsx-a11y": "^6.0.0",
+    "eslint-plugin-lodash": "^2.4.3",
+    "eslint-plugin-node": "^5.1.0",
+    "eslint-plugin-prettier": "^2.1.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.1.0",
+    "eslint-plugin-unicorn": "^2.1.2",
+    "husky": "^0.14.0",
+    "lint-staged": "^4.0.0",
+    "npm-run-all": "^4.0.0",
+    "npmpub": "^3.1.0",
+    "nyc": "^11.0.2",
+    "pify": "^3.0.0",
+    "prettier": "^1.5.2",
+    "remark-cli": "^4.0.0",
+    "remark-preset-lint-itgalaxy": "^10.0.0",
+    "tempy": "^0.1.0",
+    "webpack": "^3.0.0"
+  },
+  "peerDependencies": {
+    "webpack": "^2.0.0 || ^3.0.0"
+  },
+  "scripts": {
+    "precommit": "lint-staged",
+    "lint:prettier": "prettier --list-different '{lib,__tests__}/**/*.{js,jsx}' '*.js'",
+    "lint:remark": "remark . -i .gitignore -f -q",
+    "lint:eslint": "eslint . '.*.js' --ignore-path .gitignore --ext '.js,.jsx'",
+    "lint": "npm-run-all -l -p lint:**",
+    "fix:prettier": "prettier --write '{lib,__tests__}/**/*.{js,jsx}' '*.js'",
+    "fix:eslint": "eslint . '.*.js' --fix --ignore-path .gitignore --ext '.js,.jsx'",
+    "fix": "npm-run-all -l -p 'fix:**'",
+    "pretest": "npm run lint",
+    "test-only": "nyc ava --verbose '**/__tests__/*.js'",
+    "test": "npm run test-only",
+    "release": "npmpub"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "ava": {
+    "require": "babel-register",
+    "concurrency": 5,
+    "babel": "inherit"
+  },
+  "remarkConfig": {
+    "plugins": [
+      "remark-preset-lint-itgalaxy"
+    ]
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "sourceType": "script"
     },
-    "homepage": "https://github.com/itgalaxy/webpack-modernizr-loader",
-    "keywords": [
-        "modernizr",
-        "webpack",
-        "loader"
+    "rules": {
+      "sort-keys": "off"
+    },
+    "extends": [
+      "plugin:itgalaxy/ava",
+      "plugin:itgalaxy/esnext",
+      "plugin:itgalaxy/node"
     ],
-    "author": "Itgalaxy <development@itgalaxy.company>",
-    "bugs": {
-        "url": "https://github.com/itgalaxy/webpack-modernizr-loader/issues"
-    },
-    "license": "MIT",
-    "main": "index.js",
-    "files": [
-        "index.js"
-    ],
-    "engines": {
-        "node": ">= 4.3 < 5.0.0 || >= 5.10"
-    },
-    "dependencies": {
-        "modernizr": "^3.1.0",
-        "loader-utils": "^1.0.0"
-    },
-    "devDependencies": {
-        "ava": "^0.22.0",
-        "babel-preset-es2015": "^6.14.0",
-        "babel-preset-stage-0": "^6.5.0",
-        "babel-register": "^6.14.0",
-        "eslint": "^4.1.1",
-        "eslint-plugin-ava": "^4.2.1",
-        "eslint-plugin-import": "^2.6.0",
-        "eslint-plugin-itgalaxy": "^51.0.0",
-        "eslint-plugin-jest": "^20.0.3",
-        "eslint-plugin-jsx-a11y": "^6.0.0",
-        "eslint-plugin-lodash": "^2.4.3",
-        "eslint-plugin-node": "^5.1.0",
-        "eslint-plugin-prettier": "^2.1.2",
-        "eslint-plugin-promise": "^3.5.0",
-        "eslint-plugin-react": "^7.1.0",
-        "eslint-plugin-unicorn": "^2.1.2",
-        "husky": "^0.14.0",
-        "lint-staged": "^4.0.0",
-        "npm-run-all": "^4.0.0",
-        "npmpub": "^3.1.0",
-        "nyc": "^11.0.2",
-        "pify": "^3.0.0",
-        "prettier": "^1.5.2",
-        "remark-cli": "^4.0.0",
-        "remark-preset-lint-itgalaxy": "^7.0.1",
-        "tmp": "^0.0.33",
-        "webpack": "^3.0.0"
-    },
-    "peerDependencies": {
-        "webpack": "^2.0.0 || ^3.0.0"
-    },
-    "scripts": {
-        "precommit": "lint-staged",
-        "lint:eslint": "eslint . --ignore-path .gitignore --ignore-pattern '**/fixtures/**'",
-        "lint:remark": "remark . -i .gitignore -q -f",
-        "lint": "npm-run-all -l -p lint:**",
-        "prettier": "eslint . --fix --ignore-path .gitignore",
-        "ava": "nyc ava --verbose '**/__tests__/*.js'",
-        "pretest": "npm run lint",
-        "test": "npm run ava",
-        "release": "npmpub"
-    },
-    "babel": {
-        "presets": [
-            "es2015",
-            "stage-0"
-        ]
-    },
-    "ava": {
-        "require": "babel-register",
-        "concurrency": 5,
-        "babel": "inherit"
-    },
-    "eslintConfig": {
-        "extends": [
-            "plugin:itgalaxy/ava",
-            "plugin:itgalaxy/esnext",
-            "plugin:itgalaxy/node"
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/**/*.js"
         ],
-        "root": true
-    },
-    "remarkConfig": {
-        "plugins": [
-            "remark-preset-lint-itgalaxy"
-        ]
-    }
+        "parserOptions": {
+          "sourceType": "module"
+        },
+        "rules": {
+          "node/no-unsupported-features": "off"
+        }
+      }
+    ],
+    "root": true
+  }
 }
