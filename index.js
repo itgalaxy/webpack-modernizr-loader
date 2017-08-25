@@ -5,40 +5,27 @@ const loaderUtils = require("loader-utils");
 
 function wrapOutput(output) {
   // Exposing Modernizr as a module.
-  return `;(function(window){var hadGlobal = 'Modernizr' in window;var oldGlobal = window.Modernizr;${output};module.exports = window.Modernizr;if (hadGlobal) { window.Modernizr = oldGlobal; }else { delete window.Modernizr; }})(window);`;
+  return `;(function(window){var hadGlobal='Modernizr' in window;var oldGlobal=window.Modernizr;${output}module.exports=window.Modernizr;if(hadGlobal){window.Modernizr=oldGlobal;}else{delete window.Modernizr;}})(window);`;
 }
 
-function isJSON(str) {
-  try {
-    JSON.parse(str);
-    // eslint-disable-next-line no-unused-vars
-  } catch (error) {
-    return false;
-  }
-
-  return true;
-}
-
-module.exports = function(resolveConfig) {
+module.exports = function() {
   const callback = this.async();
-  const options = loaderUtils.getOptions(this);
+  const options = loaderUtils.getOptions(this) || {};
 
-  let userConfig = null;
+  let userConfig = {};
 
-  if (options) {
-    if (options.useConfigFile) {
-      userConfig =
-        resolveConfig && isJSON(resolveConfig)
-          ? JSON.parse(resolveConfig)
-          : this.exec(resolveConfig, this.resource);
-    } else {
-      userConfig = options;
+  if (Object.keys(options).length === 0) {
+    try {
+      // eslint-disable-next-line import/no-dynamic-require, global-require
+      userConfig = require(this.resource);
+    } catch (error) {
+      return callback(error);
     }
   } else {
-    userConfig = {};
+    userConfig = options;
   }
 
   const config = Object.assign({}, userConfig);
 
-  modernizr.build(config, output => callback(null, wrapOutput(output)));
+  return modernizr.build(config, output => callback(null, wrapOutput(output)));
 };

@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 
 ## Head
 
+- Changed: configuration loading behaviour. See `README.md`.
 - Fixed: avoid problem when `Modernizr` already exists.
 
 ## 3.0.1 - 2017-06-20

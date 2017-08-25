@@ -14,149 +14,112 @@ Get your modernizr build bundled with webpack.
 $ npm install webpack-modernizr-loader --save-dev
 ```
 
-## Initialization
-
-You have to create a `.modernizrrc` (or `.modernizrrc.js`) configuration file and put your modernizr stuff in it. 
-Like so:
-
-```json
-// .modernizrrc or .modernizrrc.json
-{
-    "options": [
-        "setClasses"
-    ],
-    "feature-detects": [
-        "test/css/flexbox",
-        "test/es6/promises",
-        "test/serviceworker"
-    ]
-}
-```
-
-Or
-
-```js
-'use strict';
-
-module.exports = {
-    options: [
-        "setClasses"
-    ],
-    "feature-detects": [
-        "test/css/flexbox",
-        "test/es6/promises",
-        "test/serviceworker"
-    ]
-};
-```
-
-Full list of supported **"options"** and their **"description"** can be found in [modernizr](https://github.com/Modernizr/Modernizr).
-
-### Webpack config
+## Usage
 
 [Documentation: Using loaders](http://webpack.github.io/docs/using-loaders.html)
 
-Put the following code to your webpack config file:
+There are three use case.
+
+1. Using loader `options`.
+
+```javascript
+import modernizr from 'modernizr'; // or `const modernizr = require('modernizr');`
+```
+
+**webpack.config.js**
 
 ```javascript
 module.exports = {
-    module: {
-        loaders: [
-            {
-                loader: 'webpack-modernizr?useConfigFile',
-                test: /\.modernizrrc$/, // or "/\.modernizrrc\.json$/", or "/\.modernizrrc\.js$/"
-            }
-        ]
-    },
-    resolve: {
-        alias: {
-            modernizr$: path.resolve(__dirname, "path/to/.modernizrrc") // or "path/to/.modernizrrc.json", or "path/to/.modernizrrc.js"
-        }
-    }
-}
-```
-
-Alternative configurations supported dynamic configuration:
-
-```javascript
-const modernizrOptions = {
-    options: [
-        "setClasses"
-    ],
-    'feature-detects': [
-        'test/css/flexbox',
-        'test/es6/promises',
-        'test/serviceworker'
+  module: {
+    rules: [
+      {
+        loader: 'webpack-modernizr-loader',
+        options: {
+          // Full list of supported options can be found in [config-all.json](https://github.com/Modernizr/Modernizr/blob/master/lib/config-all.json).
+          options: [
+            "setClasses"
+          ],
+          "feature-detects": [
+            "test/css/flexbox",
+            "test/es6/promises",
+            "test/serviceworker"
+          ]
+        },
+        test: /empty-alias-file\.js$/
+      }
     ]
-};
-
-module.exports = {
-    module: {
-        loaders: [
-            {
-                loader: `webpack-modernizr?${JSON.stringify(modernizrOptions)}`,
-                test: /modernizr$/
-            }
-        ]
-    },
-    resolve: {
-        alias: {
-            modernizr$: path.resolve(__dirname, "path/to/empty-file") // You can add comment "Please do not delete this file" in this file
-        }
+  },
+  resolve: {
+    alias: {
+      // You can add comment "Please do not delete this file" in this file
+      modernizr$: path.resolve(__dirname, "/path/to/empty-alias-file.js")
     }
+  }
 }
 ```
 
-In `webpack 2` your can use this config:
+2. Using config file through alias (supported **JavaScript** and **JSON** syntax).
 
 ```javascript
-const modernizrOptions = {
-    options: [
-        "setClasses"
-    ],
-    'feature-detects': [
-        'test/css/flexbox',
-        'test/es6/promises',
-        'test/serviceworker'
+import modernizr from 'modernizr'; // or `const modernizr = require('modernizr');`
+```
+
+**.modernizrrc.js**
+
+```javascript
+"use strict";
+
+module.exports = {
+  options: [
+    "setClasses"
+  ],
+  "feature-detects": [
+    "test/css/flexbox",
+    "test/es6/promises",
+    "test/serviceworker"
+  ]
+};
+```
+
+**webpack.config.js**
+
+```javascript
+module.exports = {
+  module: {
+    rules: [
+      {
+        loader: "webpack-modernizr-loader",
+        test: /\.modernizrrc\.js$/
+      }
     ]
-};
-
-module.exports = {
-    module: {
-        rules: [
-            {
-                loader: `webpack-modernizr-loader`,
-                options: modernizrOptions,
-                test: /modernizr$/
-            }
-        ]
-    },
-    resolve: {
-        alias: {
-            modernizr$: path.resolve(__dirname, "path/to/empty-file") // You can add comment "Please do not delete this file" in this file
-        }
+  },
+  resolve: {
+    alias: {
+      modernizr$: path.resolve(__dirname, "/path/to/.modernizrrc.js")
     }
+  }
 }
 ```
 
-### Usage
-
-Now you are able to import your custom modernizr build as a module throughout your application like so:
+3. Using config (supported **JavaScript** and **JSON** syntax) file directly (see below example how it is use).
 
 ```javascript
-const modernizr = require('modernizr');
+import modernizr from './.modernizrrc.js';
 ```
 
-```javascript
-import 'modernizr';
-```
-
-You can used [bundle](https://github.com/webpack/bundle-loader) plugin for async loading:
+**webpack.config.js**
 
 ```javascript
-import modernizrLoader from 'bundle?lazy!modernizr';
-
-modernizrLoader(() => {});
+module.exports = {
+  module: {
+    rules: [
+      {
+        loader: "webpack-modernizr-loader",
+        test: /\.modernizrrc\.js$/
+      }
+    ]
+  }
+}
 ```
 
 ## Related
