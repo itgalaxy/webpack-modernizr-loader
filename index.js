@@ -5,23 +5,7 @@ const loaderUtils = require("loader-utils");
 
 function wrapOutput(output) {
   // Exposing Modernizr as a module.
-  return (
-    "(function (root, factory) {" +
-    "'use strict';" +
-    "if (typeof define === 'function' && define.amd) {" +
-    "define([], factory);" +
-    "} else if (typeof exports === 'object'" +
-    "&& typeof module !== 'undefined'" +
-    "&& typeof require === 'function'" +
-    ") {" +
-    "module.exports = factory();" +
-    "} else {" +
-    "factory();" +
-    "}" +
-    "})(this, function () {" +
-    `'use strict';${output};` +
-    "});"
-  );
+  return `;(function(window){var hadGlobal = 'Modernizr' in window;var oldGlobal = window.Modernizr;${output};module.exports = window.Modernizr;if (hadGlobal) { window.Modernizr = oldGlobal; }else { delete window.Modernizr; }})(window);`;
 }
 
 function isJSON(str) {
