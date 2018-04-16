@@ -122,6 +122,12 @@ module.exports = {
 }
 ```
 
+## Loader options
+
+### `esModule` : `boolean`
+
+Export Modernizr as ES2015 module. Usually required if you disable ES modules transform in Babel.
+
 ## Related
 
 - [Modernizr](https://github.com/Modernizr/Modernizr) - API for this module
