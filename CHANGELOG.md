@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org).
 
+## 5.0.0 - 2019-02-04
+
+- Changed: drop support for `webpack` < 4
+- Changed: drop support for `node` < 6.9
+- Chore: minimum required `modernizr` version is now `^3.7.1`.
+
 ## 4.0.1 - 2018-02-13
 
 - Build: add `node@9` to travis CI.

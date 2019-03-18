@@ -23,7 +23,7 @@ There are three use case.
 1. Using loader `options`.
 
 ```javascript
-import modernizr from 'modernizr'; // or `const modernizr = require('modernizr');`
+const modernizr = require("modernizr");
 ```
 
 **webpack.config.js**
@@ -33,17 +33,17 @@ module.exports = {
   module: {
     rules: [
       {
-        loader: 'webpack-modernizr-loader',
+        loader: "webpack-modernizr-loader",
         options: {
           // Full list of supported options can be found in [config-all.json](https://github.com/Modernizr/Modernizr/blob/master/lib/config-all.json).
-          options: [
-            "setClasses"
-          ],
+          options: ["setClasses"],
           "feature-detects": [
             "test/css/flexbox",
             "test/es6/promises",
             "test/serviceworker"
           ]
+          // Uncomment this when you use `JSON` format for configuration
+          // type: 'javascript/auto'
         },
         test: /empty-alias-file\.js$/
       }
@@ -55,24 +55,20 @@ module.exports = {
       modernizr$: path.resolve(__dirname, "/path/to/empty-alias-file.js")
     }
   }
-}
+};
 ```
 
 2. Using config file through alias (supported **JavaScript** and **JSON** syntax).
 
 ```javascript
-import modernizr from 'modernizr'; // or `const modernizr = require('modernizr');`
+const modernizr = require("modernizr");
 ```
 
 **.modernizrrc.js**
 
 ```javascript
-"use strict";
-
 module.exports = {
-  options: [
-    "setClasses"
-  ],
+  options: ["setClasses"],
   "feature-detects": [
     "test/css/flexbox",
     "test/es6/promises",
@@ -90,6 +86,8 @@ module.exports = {
       {
         loader: "webpack-modernizr-loader",
         test: /\.modernizrrc\.js$/
+        // Uncomment this when you use `JSON` format for configuration
+        // type: 'javascript/auto'
       }
     ]
   },
@@ -98,13 +96,13 @@ module.exports = {
       modernizr$: path.resolve(__dirname, "/path/to/.modernizrrc.js")
     }
   }
-}
+};
 ```
 
 3. Using config (supported **JavaScript** and **JSON** syntax) file directly (see below example how it is use).
 
 ```javascript
-import modernizr from './.modernizrrc.js';
+const modernizr = require("modernizr");
 ```
 
 **webpack.config.js**
@@ -116,10 +114,12 @@ module.exports = {
       {
         loader: "webpack-modernizr-loader",
         test: /\.modernizrrc\.js$/
+        // Uncomment this when you use `JSON` format for configuration
+        // type: 'javascript/auto'
       }
     ]
   }
-}
+};
 ```
 
 ## Related

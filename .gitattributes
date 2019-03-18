@@ -9,105 +9,122 @@
 # Note that binary is a macro for -text -diff.
 ######################################################################
 
-## AUTO-DETECT - Handle line endings automatically for files detected
-## as text and leave all files detected as binary untouched.
-## This will handle all files NOT defined below.
+## AUTO-DETECT
+##   Handle line endings automatically for files detected as
+##   text and leave all files detected as binary untouched.
+##   This will handle all files NOT defined below.
 * text=auto
 
 ## Source code
-*.bat text eol=lf
-*.coffee text eol=lf
-*.css text eol=lf
-*.htm text eol=lf
-*.html text eol=lf
-*.inc text eol=lf
-*.js text eol=lf
-*.jsx text eol=lf
-*.json text eol=lf
-*.less text eol=lf
-*.manifest text eol=lf
-*.php text eol=lf
-*.pl text eol=lf
-*.py text eol=lf
-*.rb text eol=lf
-*.sass text eol=lf
-*.scm text eol=lf
-*.scss text eol=lf
-*.sh text eolf=lf
-*.sql text eol=lf
-*.styl text eol=lf
-*.ts text eol=lf
-*.xml text eol=lf
-*.xhtml text eol=lf
-
-## Documentation
-*.markdown text eol=lf
-*.md text eol=lf
-*.mdwn text eol=lf
-*.mdown text eol=lf
-*.mkd text eol=lf
-*.mkdn text eol=lf
-*.mdtxt text eol=lf
-*.mdtext text eol=lf
-*.txt text eol=lf
-AUTHORS text eol=lf
-CHANGELOG text eol=lf
-CHANGES text eol=lf
-CONTRIBUTING text eol=lf
-COPYING text eol=lf
-INSTALL text eol=lf
-license text eol=lf
-LICENSE text eol=lf
-NEWS text eol=lf
-readme text eol=lf
-*README* text eol=lf
-TODO text eol=lf
-
-## Templates
-*.dot text eol=lf
-*.ejs text eol=lf
-*.haml text eol=lf
-*.handlebars text eol=lf
-*.hbs text eol=lf
-*.hbt text eol=lf
-*.jade text eol=lf
-*.latte text eol=lf
-*.mustache text eol=lf
-*.njk text eol=lf
-*.phtml text eol=lf
-*.tmpl text eol=lf
-
-## Linters
-.csslintrc text eol=lf
-.eslintrc text eol=lf
-.jscsrc text eol=lf
-.jshintrc text eol=lf
-.jshintignore text eol=lf
-.stylelintrc text eol=lf
-
-## Configs
-*.bowerrc text eol=lf
-browserslist text eol=lf
-*.cnf text eol=lf
-*.conf text eol=lf
-*.config text eol=lf
-.editorconfig text eol=lf
-.gitattributes text eol=lf
-.gitconfig text eol=lf
-.gitignore text eol=lf
-.htaccess text eol=lf
-*.npmignore text eol=lf
-*.yaml text eol=lf
-*.yml text eol=lf
-Makefile text eol=lf
-makefile text eol=lf
+*.bat text eol=crlf
+*.coffee text
+*.css text
+*.htm text
+*.html text
+*.inc text
+*.ini text
+*.js text
+*.json text
+*.jsx text
+*.less text
+*.od text
+*.onlydata text
+*.php text
+*.pl text
+*.py text
+*.rb text
+*.sass text
+*.scm text
+*.scss text
+*.sh text eol=lf
+*.sql text
+*.styl text
+*.tag text
+*.ts text
+*.tsx text
+*.xml text
+*.xhtml text
 
 ## Docker
-Dockerfile text eol=lf
+*.dockerignore text
+Dockerfile text
+
+## Documentation
+*.markdown text
+*.md text
+*.mdwn text
+*.mdown text
+*.mkd text
+*.mkdn text
+*.mdtxt text
+*.mdtext text
+*.txt text
+AUTHORS text
+CHANGELOG text
+CHANGES text
+CONTRIBUTING text
+COPYING text
+copyright text
+*COPYRIGHT* text
+INSTALL text
+license text
+LICENSE text
+NEWS text
+readme text
+*README* text
+TODO text
+
+## Templates
+*.dot text
+*.ejs text
+*.haml text
+*.handlebars text
+*.hbs text
+*.hbt text
+*.jade text
+*.latte text
+*.mustache text
+*.njk text
+*.phtml text
+*.tmpl text
+*.tpl text
+*.twig text
+
+## Linters
+.babelrc text
+.csslintrc text
+.eslintrc text
+.htmlhintrc text
+.jscsrc text
+.jshintrc text
+.jshintignore text
+.nsprc text
+.nvmrc text
+.prettierrc text
+.remarkrc text
+.stylelintrc text
+
+## Configs
+*.bowerrc text
+*.cnf text
+*.conf text
+*.config text
+.browserslistrc text
+.editorconfig text
+.gitattributes text
+.gitconfig text
+.gitignore text
+.htaccess text
+*.npmignore text
+*.yaml text
+*.yml text
+browserslist text
+Makefile text
+makefile text
 
 ## Heroku
-Procfile text eol=lf
-.slugignore text eol=lf
+Procfile text
+.slugignore text
 
 ## Graphics
 *.ai binary
@@ -125,7 +142,7 @@ Procfile text eol=lf
 *.png binary
 *.psb binary
 *.psd binary
-*.svg text eol=lf
+*.svg text
 *.svgz binary
 *.tif binary
 *.tiff binary
@@ -135,7 +152,6 @@ Procfile text eol=lf
 ## Audio
 *.kar binary
 *.m4a binary
-*.m4p binary
 *.mid binary
 *.midi binary
 *.mp3 binary
@@ -156,6 +172,7 @@ Procfile text eol=lf
 *.mp4 binary
 *.mpeg binary
 *.mpg binary
+*.ogv binary
 *.swc binary
 *.swf binary
 *.webm binary
@@ -163,6 +180,7 @@ Procfile text eol=lf
 ## Archives
 *.7z binary
 *.gz binary
+*.jar binary
 *.rar binary
 *.tar binary
 *.zip binary
