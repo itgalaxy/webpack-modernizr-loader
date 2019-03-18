@@ -23,9 +23,9 @@ matrix:
       env: JOB_PART=test:only
     - node_js: "10"
       env: JOB_PART=test:only
-    - node_js: "6"
+    - node_js: "8"
       env: JOB_PART=test:only
-    - node_js: "4"
+    - node_js: "6"
       env: JOB_PART=test:only
 
 before_install:
